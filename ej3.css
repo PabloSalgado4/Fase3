@@ -1,0 +1,119 @@
+/* Modo oscuro general */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #1e1e2f;
+  color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container to hold clock and form vertically */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Digital clock */
+#reloj {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 28px;
+  background: linear-gradient(90deg, #363646, #2f3a59);
+  padding: 10px 18px;
+  border-radius: 10px;
+  color: #ffd166;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  margin-top: 60px;
+}
+
+/* Contenedor del formulario */
+form {
+  background-color: #2c2c3c;
+  padding: 25px;
+  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+form:hover {
+  transform: scale(1.02);
+}
+
+/* Títulos */
+h1, h2 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* Etiquetas e inputs */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #dcdde1;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 7px;
+  margin-bottom: 15px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #3a3a4a;
+  color: #f1f1f1;
+}
+
+/* Radios */
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Botones con animación */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background-color: #4b7bec;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #3867d6;
+  transform: translateY(-2px);
+}
+
+/* Lista de coches */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  background-color: #3a3a4a;
+  margin-bottom: 6px;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #f1f1f1;
+}
+
+/* Contador */
+#contador {
+  font-weight: bold;
+  color: #4b7bec;
+}
