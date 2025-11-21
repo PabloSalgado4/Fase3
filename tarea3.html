@@ -10,7 +10,19 @@
     <!--Detener / arrancar reloj-->
     <div id="reloj" class="reloj">--:--:--</div>
     <!--Botón para arrancar / detener reloj-->
-    <button type="button" onclick="DetenerHora()" id="pararReloj">Detener / arrancar Reloj</button>
+    <button type="button" id="pararReloj">Detener / arrancar Reloj</button>
+
+    <div id="menuColores">
+      <label>Cambiar color del reloj:</label>
+      <select id="selectorColor">
+          <option value="yellow">Amarillo</option>
+          <option value="blue">Azul</option>
+          <option value="red">Rojo</option>
+          <option value="green">Verde</option>
+          <option value="white">Blanco</option>
+        </select>
+      </div>
+    </div>
 
     <form id="formulario">
     <label>Marca del coche:</label>
@@ -35,6 +47,7 @@
     <button type="button" onclick="finalizar()">Finalizar</button>
     <button type="button" onclick="eliminarCoche()">Eliminar por marca</button>
     <button type="button" onclick="mostrarCoches()">Mostrar todos</button>
+    <button type="button" id="añadirLocalStorage" class="localStorage">Añadir Datos LocalStorage</button>
   </form>
 
     <ul id="lista"></ul>

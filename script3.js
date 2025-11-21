@@ -35,6 +35,7 @@ function agregarCoche() {
 
   coches.push(coche);
   mostrarConfirmacion(coche);
+  localStorage.setItem('coches', JSON.stringify(coches));
   document.getElementById('formulario').reset();
 
 }
@@ -47,6 +48,7 @@ function eliminarCoche() {
     coches.splice(index, 1);
     window.alert(`Coche con marca "${marca}" eliminado.`);
     actualizarLista();
+    localStorage.setItem('coches', JSON.stringify(coches));
   } else {
     window.alert('No se encontró ningún coche con esa marca.');
   }
@@ -106,7 +108,7 @@ function mostrarHora() {
 
 let myInterval = setInterval(mostrarHora, 1000);
 
-function DetenerHora() {
+document.getElementById('pararReloj').onclick = function() {
 
   if (myInterval) {
     clearInterval(myInterval);
@@ -115,3 +117,42 @@ function DetenerHora() {
     myInterval = setInterval(mostrarHora, 1000);
   }
 }
+
+document.getElementById('añadirLocalStorage').onclick = function() {
+  localStorage.setItem('nombre', 'Obaseki Nosa');
+  localStorage.setItem('edad', '29');
+  window.alert('Datos añadidos a LocalStorage');
+}
+
+//COLOR DEL RELOJ
+
+const clock = document.getElementById("reloj");
+const select = document.getElementById("selectorColor");
+
+const savedColor = localStorage.getItem("colorReloj");
+if (savedColor) {
+  clock.style.color = savedColor;
+  select.value = savedColor;
+}
+
+select.addEventListener("change", () => {
+  const color = select.value;
+  clock.style.color = color;
+  localStorage.setItem("colorReloj", color);
+});
+
+
+
+
+
+//document.getElementById('saveToFileButton2').onclick = function() {
+  //const allData = {};
+  //allData = {...localStorage};
+  //const jsonString = JSON.stringify(allData, null, 2);
+  //const blob = new Blob([jsonString], { type: 'application/json' });
+  //const link = document.createElement("a");
+  //link.href = URL.createObjectURL(blob);
+  //link.download = "all_local_storage.json";
+  //link.click();
+  //URL.revokeObjectURL(link.href);}
+//
