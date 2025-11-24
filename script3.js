@@ -1,4 +1,13 @@
 let coches = [];
+const btnAgregarCoche = document.getElementById('btnagregacoche');
+btnAgregarCoche.addEventListener('click', agregarCoche);
+const btnFinalizar = document.getElementById('btnfinalizar');
+btnFinalizar.addEventListener('click', finalizar);
+const btnEliminarMarca = document.getElementById('btneliminarmarca');
+btnEliminarMarca.addEventListener('click', eliminarCoche);
+const btnmostrarTodos = document.getElementById('btnmostrartodos');
+btnmostrarTodos.addEventListener('click', mostrarCoches);
+
 
 function capturarDatos() {
   const marca = document.getElementById('marca').value.trim();
@@ -8,6 +17,7 @@ function capturarDatos() {
 
   return { marca, año, categoria, reparado };
 }
+
 
 function agregarCoche() {
   const coche = capturarDatos();
@@ -23,7 +33,7 @@ function agregarCoche() {
   }
 
   if (coche.año < 1900 || coche.año > 2025) {
-   window.alert('El año debe estar entre 1900 y 2025.');
+    window.alert('El año debe estar entre 1900 y 2025.');
     return;
   }
 
@@ -34,10 +44,18 @@ function agregarCoche() {
   }
 
   coches.push(coche);
-  mostrarConfirmacion(coche);
-  localStorage.setItem('coches', JSON.stringify(coches));
-  document.getElementById('formulario').reset();
 
+  // MOSTRAR CONFIRMACIÓN EN ALERT
+  mostrarConfirmacion(coche);
+
+  // GUARDAR EN LOCAL STORAGE
+  localStorage.setItem('coches', JSON.stringify(coches));
+
+  // NUEVO: Mostrar en pantalla automáticamente
+  actualizarLista();
+
+  // Limpiar formulario
+  document.getElementById('formulario').reset();
 }
 
 function eliminarCoche() {
@@ -84,13 +102,12 @@ function finalizar() {
 function actualizarLista() {
   const lista = document.getElementById('lista');
   lista.innerHTML = '';
+
   coches.forEach(c => {
     const item = document.createElement('li');
     item.textContent = `${c.marca} (${c.año}) - ${c.categoria} - Reparado: ${c.reparado ? 'Sí' : 'No'}`;
     lista.appendChild(item);
   });
-
-  window.alert(`Vehículos registrados: ${coches.length}`);
 }
 
 function mostrarConfirmacion(coche) {
@@ -128,8 +145,8 @@ document.getElementById('añadirLocalStorage').onclick = function() {
 
 const clock = document.getElementById("reloj");
 const select = document.getElementById("selectorColor");
-
 const savedColor = localStorage.getItem("colorReloj");
+
 if (savedColor) {
   clock.style.color = savedColor;
   select.value = savedColor;
@@ -141,18 +158,10 @@ select.addEventListener("change", () => {
   localStorage.setItem("colorReloj", color);
 });
 
-
-
-
-
-//document.getElementById('saveToFileButton2').onclick = function() {
-  //const allData = {};
-  //allData = {...localStorage};
-  //const jsonString = JSON.stringify(allData, null, 2);
-  //const blob = new Blob([jsonString], { type: 'application/json' });
-  //const link = document.createElement("a");
-  //link.href = URL.createObjectURL(blob);
-  //link.download = "all_local_storage.json";
-  //link.click();
-  //URL.revokeObjectURL(link.href);}
-//
+window.onload = () => {
+  const guardados = localStorage.getItem('coches');
+  if (guardados) {
+    coches = JSON.parse(guardados);
+    actualizarLista(); // mostrar en pantalla los guardados
+  }
+};
